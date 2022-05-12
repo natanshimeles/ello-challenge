@@ -21,8 +21,7 @@ root.render(
   <React.StrictMode>
    <ApolloProvider client={client}>
     <App />
-  </ApolloProvider>,
-  document.getElementById('root'),
+  </ApolloProvider>
   </React.StrictMode>
 );
 
