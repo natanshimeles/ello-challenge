@@ -16,8 +16,7 @@ export default function Dialog(props: DialogProps){
 
             <div className="dialog">
             <div className="dialog-content">
-            <span className="close">&times;</span>
-            <span><button onClick={props.onClose}>Close</button></span>
+            <span className="close"  onClick={props.onClose}>&times;</span>
                 {props.children}
           </div>
           </div>

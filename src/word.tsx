@@ -59,10 +59,14 @@ export default function Word() {
     useEffect(
         ()=>{
             if(data != undefined){
-               
+                   
+                console.log(data.book.pages[page ].content);
+                console.log(page);
+                
+                
  
-                setSentence(data.book.pages[page].content);
-                setTokens(data.book.pages[page].tokens);
+                setSentence(data.book.pages[page ].content);
+                setTokens(data.book.pages[page ].tokens);
 
                 let k = [];
 
@@ -74,13 +78,7 @@ export default function Word() {
                     
 
                         if(tokens[tokenposition] == undefined){
-                            
-                            
-                            
-                            
-                            
-    
-                            return;
+                            break;
                         }
                         
                     k.push(<span key={i} onClick={() => showResult( tokenposition)} className="wordBackGround">{sententce.substring(i,tokens[tokenposition].position[1] )}</span>);
@@ -89,7 +87,7 @@ export default function Word() {
                     tokenposition++;
                 }
                 else{
-                    k.push( <span key={i}>{sententce[i]}</span>);
+                    k.push( <span className="wordBackGround" key={i}>{sententce[i]}</span>);
                   
                     i++
                 }
@@ -101,7 +99,7 @@ export default function Word() {
             }
         
         },
-        [data,page]
+        [page,sententce, tokens]
     )
   
     if (loading) return <h1>'Loading...'</h1>;
@@ -129,7 +127,7 @@ export default function Word() {
   
     return (<div>
     <Dialog onClose={()=>{setDialogVisble(false)}} isVisble={isDialogVisible} width="50%" height="50%"><span>{wordToDisplay}</span> </Dialog>
-     <div className="pageBackground">{previous} {a} {page} {next}</div>
+     <div className="pageBackground">{previous} {a} {page + 1} {next}</div>
      </div>
     );
 
