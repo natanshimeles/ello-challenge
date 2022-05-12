@@ -1,10 +1,9 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Word from './word';
 
 function App() {
   return (
-    <h1>hello ello</h1>
+    <Word></Word>
   );
 }
 
