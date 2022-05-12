@@ -1,6 +1,7 @@
 
 import { gql, useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
+import Dialog from "./dialog";
 
 interface Token{
     value:string;
@@ -19,28 +20,83 @@ const GET_PAGES = gql`query{
   }`;
 
 export default function Word() {
+    //Getting data from backend
     const { loading, error, data } = useQuery(GET_PAGES);
+    const [isDialogVisible, setDialogVisble]= useState(false);
+
+
+    const  [a,setA]  = useState<any[]>([]);
+
+    const [wordToDisplay, setWordToDisplay] = useState("")
+
+
+    const [page, setPage] = useState(0);
 
 
 
-    const [page, setPage] = useState(1);
+    function changePage(page:number){
+        if(page >=  data.book.pages.length){
+            return;
+        }
+
+        if(page < 0){
+            return;
+        }
+        
+        setPage(page)
+    }
 
   
-    const previous = <button className="page-button" onClick={()=> setPage(page - 1)}>Previous</button>
+    const previous = <button className="page-button" onClick={()=> changePage(page - 1)}>Previous</button>
+    const next = <button className="page-button" onClick={()=> changePage(page + 1)}>Next</button>
 
-    const next = <button className="page-button" onClick={()=> setPage(page + 1)}>Next</button>
 
-    const  [word, setWord] = useState("");
+
+
+    const  [sententce, setSentence] = useState("");
     const  [tokens, setTokens] = useState <Token[]>([] as Token[]);
 
     useEffect(
         ()=>{
             if(data != undefined){
-                console.log(page);
-                console.log("sd");
-                
-                setWord(data.book.pages[page].content);
+               
+ 
+                setSentence(data.book.pages[page].content);
                 setTokens(data.book.pages[page].tokens);
+
+                let k = [];
+
+
+                for(let i = 0 ,tokenposition = 0; i < sententce.length ;){
+                    if(sententce[i].match(/[a-zA-Z]/)){
+                        
+                       
+                    
+
+                        if(tokens[tokenposition] == undefined){
+                            
+                            
+                            
+                            
+                            
+    
+                            return;
+                        }
+                        
+                    k.push(<span key={i} onClick={() => showResult( tokenposition)} className="wordBackGround">{sententce.substring(i,tokens[tokenposition].position[1] )}</span>);
+            
+                    i = tokens[tokenposition].position[1];
+                    tokenposition++;
+                }
+                else{
+                    k.push( <span key={i}>{sententce[i]}</span>);
+                  
+                    i++
+                }
+            }
+
+            setA(k);
+            
           
             }
         
@@ -60,44 +116,21 @@ export default function Word() {
 
 
     function showResult( j:number){
-        alert(tokens[j -1 ].value)
-        console.log(j -1 );
-        
-        console.log(tokens[j -1 ].value);
-        
-        
-        
+        setDialogVisble(true)
+        setWordToDisplay(tokens[j -1 ].value);
+    
     }
 
     
     
     
     
-
-    let a:any[] = [];
-
-    for(let i = 0 ,tokenposition = 0; i < word.length ;){
-        if(word[i].match(/[a-zA-Z]/)){
-           
-            //console.log(tokenposition, word.substring(i,tokens[tokenposition].position[1] ));
-            
-        a.push(<span onClick={() => showResult( tokenposition)} className="wordBackGround">{word.substring(i,tokens[tokenposition].position[1] )}</span>);
-
-        i = tokens[tokenposition].position[1];
-        tokenposition++;
-    }
-    else{
-        a.push( <span>{word[i]}</span>);
-      
-        i++
-    }
-}
-
-
    
   
-    return (
-     <div className="pageBackground">{previous} {a} {next}</div>
+    return (<div>
+    <Dialog onClose={()=>{setDialogVisble(false)}} isVisble={isDialogVisible} width="50%" height="50%"><span>{wordToDisplay}</span> </Dialog>
+     <div className="pageBackground">{previous} {a} {page} {next}</div>
+     </div>
     );
 
   }
