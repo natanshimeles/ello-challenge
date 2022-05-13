@@ -25,7 +25,7 @@ export default function Word() {
     const [isDialogVisible, setDialogVisble]= useState(false);
 
 
-    const  [a,setA]  = useState<any[]>([]);
+    const  [pageToDisplay,setpageToDispplay]  = useState<any[]>([]);
 
     const [wordToDisplay, setWordToDisplay] = useState("")
 
@@ -59,16 +59,11 @@ export default function Word() {
     useEffect(
         ()=>{
             if(data != undefined){
-                   
-                console.log(data.book.pages[page ].content);
-                console.log(page);
-                
-                
- 
+                // set current page and tokens
                 setSentence(data.book.pages[page ].content);
                 setTokens(data.book.pages[page ].tokens);
 
-                let k = [];
+                let currentPageToDisplayHolder = [];
 
 
                 for(let i = 0 ,tokenposition = 0; i < sententce.length ;){
@@ -81,19 +76,19 @@ export default function Word() {
                             break;
                         }
                         
-                    k.push(<span key={i} onClick={() => showResult( tokenposition)} className="wordBackGround">{sententce.substring(i,tokens[tokenposition].position[1] )}</span>);
+                    currentPageToDisplayHolder.push(<span key={i} onClick={() => showResult( tokenposition)} className="wordBackGround">{sententce.substring(i,tokens[tokenposition].position[1] )}</span>);
             
                     i = tokens[tokenposition].position[1];
                     tokenposition++;
                 }
                 else{
-                    k.push( <span className="punctuationBackGround" key={i}>{sententce[i]}</span>);
+                    currentPageToDisplayHolder.push( <span className="punctuationBackGround" key={i}>{sententce[i]}</span>);
                   
                     i++
                 }
             }
 
-            setA(k);
+            setpageToDispplay(currentPageToDisplayHolder);
             
           
             }
@@ -112,7 +107,7 @@ export default function Word() {
     }
     return (<div>
     <Dialog onClose={()=>{setDialogVisble(false)}} isVisble={isDialogVisible} width="50%" height="50%"><span>{wordToDisplay}</span> </Dialog>
-     <div className="pageBackground"> {a}  </div>
+     <div className="pageBackground"> {pageToDisplay}  </div>
      <div className="nextPreviousButton">
          <span className="previousButton">{previous}</span>
           <span className="page">Page {page + 1}</span>
