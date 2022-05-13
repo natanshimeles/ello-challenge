@@ -106,12 +106,22 @@ export default function Word() {
     }
     return (<div>
     <Dialog onClose={()=>{setDialogVisble(false)}} isVisble={isDialogVisible} width="50%" height="50%"><span>{wordToDisplay}</span> </Dialog>
+     
      <div className="whole-page">
-     <div className="page-background"> {pageToDisplay}  </div>
+         <div className="page-content">
+             <div className="previous-button">{previous}</div>
+             <div className="page-background"> {pageToDisplay}  </div>
+             <div className="next-button">{next}</div>
+    </div>
+     
+
+
      <div className="next-previous-page">
-         <span className="previous-button">{previous}</span>
+    
+      
           <span className="page">Page {page + 1}</span>
-          <span className="next-button">{next}</span></div>
+    </div>
+        
      </div>
      </div>
     );
