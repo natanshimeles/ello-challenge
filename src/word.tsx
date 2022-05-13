@@ -35,6 +35,7 @@ export default function Word() {
 
 
     function changePage(page:number){
+        // if page number is less than 0 or page number is greater than max page skip
         if(page >=  data.book.pages.length){
             return;
         }
@@ -59,7 +60,7 @@ export default function Word() {
     useEffect(
         ()=>{
             if(data != undefined){
-                // set current page and tokens
+                // set current page sentence and token from page
                 setSentence(data.book.pages[page ].content);
                 setTokens(data.book.pages[page ].tokens);
 
@@ -67,10 +68,8 @@ export default function Word() {
 
 
                 for(let i = 0 ,tokenposition = 0; i < sententce.length ;){
+                    // if the current word is an alphabatic character take the start and find the end in the tokenized word
                     if(sententce[i].match(/[a-zA-Z]/)){
-                        
-                       
-                    
 
                         if(tokens[tokenposition] == undefined){
                             break;
