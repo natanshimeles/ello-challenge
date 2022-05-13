@@ -1,6 +1,7 @@
-# Getting Started with Create React App
 
 # node version 16.4 was used to run the app
+
+# apollo client used to connect to the backend 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
