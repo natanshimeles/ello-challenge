@@ -1,4 +1,3 @@
-import { ReactChild, ReactChildren } from "react";
 
 interface DialogProps{
     isVisble: boolean;
