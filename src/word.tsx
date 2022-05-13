@@ -47,8 +47,8 @@ export default function Word() {
     }
 
   
-    const previous = <button className="page-button" onClick={()=> changePage(page - 1)}>Previous</button>
-    const next = <button className="page-button" onClick={()=> changePage(page + 1)}>Next</button>
+    const previous = <button className="page-button" onClick={()=> changePage(page - 1)}> &laquo; Previous</button>
+    const next = <button className="page-button" onClick={()=> changePage(page + 1)}>Next &raquo;</button>
 
 
 
@@ -105,26 +105,11 @@ export default function Word() {
     if (loading) return <h1>'Loading...'</h1>;
     if (error) return <p>`Error! ${error.message}`</p>;
 
-
-    
-
-
-    
-    //console.log(word);
-
-
     function showResult( j:number){
         setDialogVisble(true)
         setWordToDisplay(tokens[j -1 ].value);
     
     }
-
-    
-    
-    
-    
-   
-  
     return (<div>
     <Dialog onClose={()=>{setDialogVisble(false)}} isVisble={isDialogVisible} width="50%" height="50%"><span>{wordToDisplay}</span> </Dialog>
      <div className="pageBackground">{previous} {a} {page + 1} {next}</div>
