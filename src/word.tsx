@@ -87,7 +87,7 @@ export default function Word() {
                     tokenposition++;
                 }
                 else{
-                    k.push( <span className="wordBackGround" key={i}>{sententce[i]}</span>);
+                    k.push( <span className="punctuationBackGround" key={i}>{sententce[i]}</span>);
                   
                     i++
                 }
@@ -112,7 +112,11 @@ export default function Word() {
     }
     return (<div>
     <Dialog onClose={()=>{setDialogVisble(false)}} isVisble={isDialogVisible} width="50%" height="50%"><span>{wordToDisplay}</span> </Dialog>
-     <div className="pageBackground">{previous} {a} {page + 1} {next}</div>
+     <div className="pageBackground"> {a}  </div>
+     <div className="nextPreviousButton">
+         <span className="previousButton">{previous}</span>
+          <span className="page">Page {page + 1}</span>
+          <span className="nextButton">{next}</span></div>
      </div>
     );
 
