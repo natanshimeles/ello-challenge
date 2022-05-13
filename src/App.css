@@ -1,11 +1,11 @@
 .wordBackGround{
-  font-size: 2em;
+  font-size: 1.5em;
   cursor: pointer;
   
 }
 
 .punctuationBackGround{
-  font-size: 2em;
+  font-size: 1.5em;
   cursor: pointer;
 }
 
@@ -13,7 +13,7 @@
   color: blue;
 }
 
-.pageBackground{
+.page-background{
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
  
   margin: auto;
@@ -23,7 +23,7 @@
   width: 40%;
  
 }
-.nextPreviousButton{
+.next-previous-page{
   padding-top: 2em;
   width: 40%;
   margin: auto;
@@ -35,11 +35,66 @@
 .page-button{
   padding: 8px 16px;
   border: none;
-  font-size: 1.5em;
+  font-size: 1.2em;
   border-radius: 1em;
   background-color: #04AA6D;
   color: white;
   cursor: pointer;
+}
+
+@media screen and (min-width: 200px) {
+  .dialog-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border-radius: 10em;
+    text-align: center;
+    border-radius: 3px;
+    
+    border: 0.1em solid #888;
+    width: 55%; 
+    font-size: 6vw;/* Could be more or less, depending on screen size */
+  }
+}
+
+
+@media screen and (min-width: 900px) {
+  .dialog-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border-radius: 10em;
+    text-align: center;
+    border-radius: 3px;
+    
+    border: 0.1em solid #888;
+    width: 15%; 
+    font-size: 2vw;/* Could be more or less, depending on screen size */
+  }
+}
+
+
+@media screen and (min-width: 800px) {
+  .whole-page {
+    padding-top: 90px;
+    font-size: 2em;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .whole-page {
+    padding-top: 150px;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .whole-page {
+    padding-top: 150px;
+  }
+}
+@media screen and (min-width: 1900px) {
+  .whole-page {
+    padding-top: 150px;
+  }
 }
 
 
@@ -49,6 +104,7 @@
   z-index: 1; /* Sit on top */
   left: 0;
   top: 0;
+  
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
@@ -59,18 +115,6 @@
   animation-duration: 0.4s
 }
 
-/* Modal Content/Box */
-.dialog-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  text-align: center;
-  border-radius: 3px;
-  
-  border: 1px solid #888;
-  width: 10%; 
-  font-size: 30px;/* Could be more or less, depending on screen size */
-}
 
 /* The Close Button */
 .close {

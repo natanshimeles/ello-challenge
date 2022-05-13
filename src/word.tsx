@@ -47,8 +47,8 @@ export default function Word() {
     }
 
   
-    const previous = <button className="page-button" onClick={()=> changePage(page - 1)}> &laquo; Previous</button>
-    const next = <button className="page-button" onClick={()=> changePage(page + 1)}>Next &raquo;</button>
+    const previous = <button className="page-button" onClick={()=> changePage(page - 1)}> &#8249;</button>
+    const next = <button className="page-button" onClick={()=> changePage(page + 1)}>&#8250;</button>
 
 
 
@@ -107,11 +107,13 @@ export default function Word() {
     }
     return (<div>
     <Dialog onClose={()=>{setDialogVisble(false)}} isVisble={isDialogVisible} width="50%" height="50%"><span>{wordToDisplay}</span> </Dialog>
-     <div className="pageBackground"> {pageToDisplay}  </div>
-     <div className="nextPreviousButton">
-         <span className="previousButton">{previous}</span>
+     <div className="whole-page">
+     <div className="page-background"> {pageToDisplay}  </div>
+     <div className="next-previous-page">
+         <span className="previous-button">{previous}</span>
           <span className="page">Page {page + 1}</span>
-          <span className="nextButton">{next}</span></div>
+          <span className="next-button">{next}</span></div>
+     </div>
      </div>
     );
 
